@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/home.css') }}" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"
+      integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA=="
+      crossorigin="anonymous"></script>
+
+    <title>Chat APP</title>
+  </head>
+  <body>
+    <div class="content">
+      <form method="post" class="form" id="form">
+        <h3>Join a Chat Room!</h3>
+        <div class="form__name">
+          <label>Name:</label>
+          <input
+            type="text"
+            placeholder="Pick a name!"
+            name="name"
+            id="name"
+            value="{{name}}" />
+        </div>
+        <div class="form__join">
+          <input
+            type="text"
+            placeholder="Room Code"
+            id="room"
+            name="room"
+            value="{{ room }}" />
+          <button type="submit" name="join" id="join">Join</button>
+        </div>
+        <button type="submit" id="create" name="create" class="form__create">
+          Create a Room
+        </button>
+      </form>
+      <script src="{{ url_for('static', filename='js/home.js') }}"></script>
+    </div>
+  </body>
+</html>

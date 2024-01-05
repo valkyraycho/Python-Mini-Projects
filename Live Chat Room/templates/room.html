@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/room.css') }}" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"
+      integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA=="
+      crossorigin="anonymous"></script>
+
+    <title>Chat APP</title>
+  </head>
+  <body>
+    <div class="content">
+      <div class="message-box">
+        <h2>Chat Room ({{room}})</h2>
+        <div class="message-box__messages" id="messages"></div>
+        <form class="message-box__entry" id="entry">
+          <input
+            type="text"
+            rows="3"
+            placeholder="Your message"
+            name="message"
+            id="message" />
+          <button type="submit" name="send" id="send" onclick="sendMessage()">
+            Send
+          </button>
+        </form>
+      </div>
+      <script src="{{ url_for('static', filename='js/room.js') }}"></script>
+      <script>
+        const messages = {{ messages|tojson|safe }};
+        console.log(messages)
+        messages.forEach((message) => {
+          createMessage(message.name, message.message, message.timestamp);
+        });
+      </script>
+    </div>
+  </body>
+</html>
